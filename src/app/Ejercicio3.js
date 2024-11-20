@@ -14,12 +14,13 @@ export default function TaskApp() {
     initialTodos
   );
 
-  function handleAddTodo(title) {
-    todos.push({
-      id: nextId++,
-      title: title,
-      done: false
-    });
+  function handleAddTodo(title){
+    setTodos(todos.concat({id: nextId++, title: title, done:false}));
+  }
+
+  function handleDeleteTodo(todoId){
+    setTodos(todos.filter(todo => todo.id !== todoId));
+      
   }
 
   function handleChangeTodo(nextTodo) {
@@ -30,12 +31,6 @@ export default function TaskApp() {
     todo.done = nextTodo.done;
   }
 
-  function handleDeleteTodo(todoId) {
-    const index = todos.findIndex(t =>
-      t.id === todoId
-    );
-    todos.splice(index, 1);
-  }
 
   return (
     <>
